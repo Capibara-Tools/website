@@ -46,6 +46,7 @@ jobs:
         env: 
           CAPIBARA_WEBSITE_SSH_KEY: ${{ secrets.CAPIBARA_TOOLS_USER_SSH_KEY }}
         run: |
+          mkdir ../keys
           cd ../keys
           echo "$CAPIBARA_WEBSITE_SSH_KEY" > capibara_website_ssh_key
           chmod 600 capibara_website_ssh_key
