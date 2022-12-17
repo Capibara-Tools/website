@@ -33,7 +33,8 @@ jobs:
           npm install
           export CI = 0 && npm run build
           echo "Copy build to Play Server"
-          mv build ../capibara-website/public/clientapp
+          ls
+          mv ./build ../capibara-website/public/clientapp
           
       - name: Build server
         run: |
