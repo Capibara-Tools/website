@@ -16,9 +16,9 @@ class ErrorHandler extends HttpErrorHandler {
       if (statusCode != 404) {
         Status(statusCode)("A client error occurred: " + message)
       } else {
-        val bufferedSource =
-          scala.io.Source.fromFile("./public/clientapp/build/index.html")
-        val data = bufferedSource.getLines.mkString
+        val appClass = this.getClass();
+        val bufferedSource = appClass.getResourceAsStream("public/clientapp/index.html");
+        val data = scala.io.Source.fromInputStream(bufferedSource).mkString
         bufferedSource.close
         Status(statusCode)(data).as("text/html")
       }
