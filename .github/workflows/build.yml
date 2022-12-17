@@ -46,20 +46,13 @@ jobs:
         env: 
           CAPIBARA_WEBSITE_SSH_KEY: ${{ secrets.CAPIBARA_TOOLS_USER_SSH_KEY }}
         run: |
-          ls
           mkdir ../keys
           cd ../keys
-          ls
           echo "$CAPIBARA_WEBSITE_SSH_KEY" > capibara_website_ssh_key
-          ls
           chmod 600 capibara_website_ssh_key
           mkdir ~/.ssh
           ssh-keyscan -t rsa capibara.tools >> ~/.ssh/known_hosts
           cd ../website/capibara-website/target/universal
-          ls ..
-          ls ../..
-          ls ../../..
-          ls ../../../..
-          ls ../../../../..
           scp -i ../../../../keys/capibara_website_ssh_key capibara-website-1.0-SNAPSHOT.zip capibara@capibara.tools:dist.zip
+          ssh -i ../../../../keys/capibara_website_ssh_key capibara@capibara.tools 'bash < /home/capibara/redeploy_script.sh'
           echo "All Done"
