@@ -31,7 +31,7 @@ jobs:
         run: |
           cd clientapp
           npm install
-          export CI=0 && npm run build
+          CI=false npm run build
           echo "Copy build to Play Server"
           ls
           mv ./build ../capibara-website/public/clientapp
