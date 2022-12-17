@@ -53,5 +53,5 @@ jobs:
           mkdir ~/.ssh
           ssh-keyscan -t rsa capibara.tools >> ~/.ssh/known_hosts
           cd ../website/capibara-website/target/universal
-          scp -i ~/keys/capibara_website_ssh_key capibara-website-1.0-SNAPSHOT.zip capibara@capibara.tools:dist.zip
+          scp -i ../../../../../keys/capibara_website_ssh_key capibara-website-1.0-SNAPSHOT.zip capibara@capibara.tools:dist.zip
           echo "All Done"
