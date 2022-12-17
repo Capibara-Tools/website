@@ -1,0 +1,6 @@
+.scalafmt.conf
+.metals
+.vscode
+
+capibara.json
+/RUNNING_PID
