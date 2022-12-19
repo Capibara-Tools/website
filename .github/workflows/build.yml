@@ -41,7 +41,7 @@ jobs:
           cd capibara-website
           sbt dist
           
-      - if: ${{ github.event_name == 'pull_request' }}
+      - if: ${{ github.event_name == 'push' }}
         name: Publish to capibara.tools
         env: 
           CAPIBARA_WEBSITE_SSH_KEY: ${{ secrets.CAPIBARA_TOOLS_USER_SSH_KEY }}
