@@ -1,4 +1,4 @@
-import portrait from '../resources/portrait_placeholder.png'
+import portrait from "../resources/portrait_placeholder.png";
 
 export default function About() {
   return (
@@ -19,12 +19,22 @@ export default function About() {
           <div className="attribution">
             <span className="name">Justin Woodring</span>
             <span className="description">Founder & Project Creator</span>
+            <div className="links">
+              <ul>
+                <li>
+                  <a href="https://justinwoodring.com">Website</a>
+                </li>
+                <li>
+                  <a href="https://github.com/sponsors/JustinWoodring">Sponsor</a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
 
         <div className="person">
           <div className="image">
-            <img src={portrait}/>
+            <img src={portrait} />
           </div>
           <div className="attribution">
             <span className="name">You</span>

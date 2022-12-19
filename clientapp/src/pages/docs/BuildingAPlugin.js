@@ -23,7 +23,7 @@ export default function BuildingAPlugin() {
         stored in <code>.yaml</code> files. Ultimately, it's an easy format for
         a person to navigate through but a nasty job for a computer to do on the
         fly. For more info on the repository format see,{" "}
-        <Link to="/docs/contributing-docs">
+        <Link to="/docs/contribute-docs">
           Contributing C Library Documentation
         </Link>
       </p>

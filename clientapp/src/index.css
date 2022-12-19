@@ -21,10 +21,6 @@ h1{
   padding:0;
 }
 
-.capi ul li::marker {
-}
-
-
 .outer-nav{
   width:100%;
   border-bottom: 1px solid #ccc;
@@ -335,9 +331,6 @@ h1{
   color:#333;
 }
 
-.docs {
-}
-
 .banner {
   background-size: contain;
   background-repeat: no-repeat;
@@ -347,6 +340,7 @@ h1{
 }
 
 .banner-inner{
+  box-sizing: border-box;
   width: 100%;
   margin:auto;
   padding:1rem;
@@ -509,7 +503,7 @@ h1{
 }
 
 .about .people .person{
-  width: 12em;
+  width: 14em;
   margin: 1em;
 
   background-color: #efefef;
@@ -519,7 +513,9 @@ h1{
 .about .people .person .image img{
   width:100%;
   object-fit: cover;
-  height:12em;
+  height:14em;
+  border-top-left-radius: .3rem;
+  border-top-right-radius: .3rem;
 }
 
 .about .people .person .attribution{
@@ -529,4 +525,158 @@ h1{
 .about .people .person .name{
   display: block;
   font-weight: 800;
+}
+
+.about .people .person .description{
+  font-size: .95rem;
+}
+
+.about .people .person .links ul{
+  display: flex;
+  list-style-type: none;
+  margin:0;
+  padding: 0;
+  padding-top:.5em;
+}
+
+.about .people .person .links ul li{
+  flex:1;
+  display: inline-flex;
+}
+
+.about .people .person .links ul li{
+  border-right:1px solid #ccc;
+  border-left:1px solid #ccc;
+}
+
+.about .people .person .links ul li:first-child{
+  border-right:1px solid #ccc;
+  border-left:1px solid transparent;
+}
+
+.about .people .person .links ul li:last-child{
+  border-left:1px solid #ccc;
+  border-right:1px solid transparent;
+}
+
+.about .people .person .links ul li a{
+  display: block;
+  font-weight: 800;
+  font-size: 1rem;
+  margin:auto;
+  border:0px solid transparent;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 1200px) {
+  .inner-nav{
+    height:auto;
+    width: 95%;
+    display: block;
+    margin: auto;
+  }
+  
+  .inner-nav .left-side .logo a {
+    margin:auto auto;
+    display: inline-block;
+    height:3em;
+  }
+
+  .inner-nav .left-side .logo a img {
+    height:3em;
+  }
+  
+  .inner-nav .left-side .logo {
+    text-align: center;
+    margin:auto auto;
+    display: flex;
+    width: 100%;
+    height:5em;
+  }
+  
+  .inner-nav .left-side {
+    margin:auto auto;
+    height:auto;
+    display: block;
+  }
+  
+  .inner-nav .left-side .links{
+    margin:auto 0;
+    padding:0em 1em;
+    display: flex;
+    justify-content: space-between;
+  
+  }
+  
+  .inner-nav .left-side .links a{
+    text-decoration: none;
+    padding: 0 1rem;
+    color:#333;
+  }
+  
+  
+  .inner-nav .right-side {
+    display: flex;
+    margin:auto 0;
+    height:4em;
+  }
+  
+  .inner-nav .right-side .search{
+    display: flex;
+    margin:auto 0;
+    height:2rem;
+  }
+  
+  .inner-nav .right-side .search input{
+    margin:auto 0;
+    display: inline-block;
+    height:2rem;
+    font-size: 1.1rem;
+    border:2px solid #ccc;
+    background-color: white;
+    
+  }
+  
+  .inner-nav .right-side .search input:focus{
+  
+    outline: none;
+    border: 2px solid #333;
+  }
+  
+  .inner-nav .right-side .search button{
+    margin:auto 0;
+    display: inline-block;
+    height:2rem;
+    font-size: 1.1rem;
+    color:white;
+    background-color: #333;
+    border: 0px transparent;
+    margin-left:.5rem;
+    
+  }
+  
+  .inner-nav .right-side .search *{
+    vertical-align: middle;
+    
+  }
+  
+  .inner-nav .right-side .links{
+    margin:auto auto;
+    padding:0em 1em;
+    font-size: 2rem;
+    display: flex;
+    justify-content: space-between;
+  
+  }
+  
+  .inner-nav .right-side .links a{
+    text-decoration: none;
+    padding: 0 1rem;
+    color:#333;
+  }
+  
+
+  .page {
+    width: 95%;
+  }
 }
