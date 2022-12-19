@@ -20,7 +20,7 @@ class ErrorHandler extends HttpErrorHandler {
         val bufferedSource = appClass.getResourceAsStream("public/clientapp/index.html");
         val data = scala.io.Source.fromInputStream(bufferedSource).mkString
         bufferedSource.close
-        Status(statusCode)(data).as("text/html")
+        Status(308)(data).as("text/html")
       }
     )
   }
