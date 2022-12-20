@@ -4,7 +4,7 @@ export default function CapiHeader({ header }) {
   const renderedFunctions = [];
 
   header.functions.forEach((fn) => {
-    const parameters = fn.parameters.map((p) => {
+    const parameters = fn.parameters.map((p, i) => {
       return (
         <>
           <span className="parameter">
@@ -12,6 +12,7 @@ export default function CapiHeader({ header }) {
               {p.type.replace(/\[\`(.+)\/(.+)\`\]/gm, "$2")}
             </span>
             <span className="name">{p.name}</span>
+            {i!=fn.parameters.length-1 ? "," : ""}
           </span>
         </>
       );
@@ -23,7 +24,7 @@ export default function CapiHeader({ header }) {
           className="code_link"
           to={"/capi/" + fn.header.ref + "/" + fn.name}
         >
-          {fn.name}({parameters}) -{" "}
+          {fn.name}({parameters}):
           <span className="description">
             {fn.summary.replace(/\[\`(.+)\/(.+)\`\]/gm, "`$2`")}
           </span>

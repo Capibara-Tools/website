@@ -13,7 +13,7 @@ class ErrorHandler extends HttpErrorHandler {
       message: String
   ): Future[Result] = {
     Future.successful(
-      if (statusCode != 404) {
+      if (statusCode != 404 || request.path.contains("static")) {
         Status(statusCode)("A client error occurred: " + message)
       } else {
         val appClass = this.getClass();

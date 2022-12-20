@@ -7,7 +7,7 @@ body{
 }
 
 h1{
-  font-size: 2.2rem;
+  font-size: 2rem;
 }
 
 .App {
@@ -133,10 +133,9 @@ h1{
   width:60%;
   min-width: 10rem;
   margin: auto;
-  margin-top: 4rem;
+  margin-top: 2rem;
   flex:1;
   text-align: left;
-  font-size: 1.1rem;
   line-height: 2rem;
 }
 
@@ -149,10 +148,10 @@ h1{
 }
 
 .main-hero {
-  width:max(60vw,10rem);
+  width:max(50vw,8rem);
   color:white;
   font-weight: 800;
-  font-size: max(2.5vw,1.5rem);
+  font-size: max(2.0vw,1.3rem);
   background-color: #3331;
   margin:3rem auto;
   padding:2rem;
@@ -186,7 +185,7 @@ h1{
 .title-split-container {
   text-align: center;
   margin-top: 4rem;
-  font-size: 1.2rem;
+  font-size: 1rem;
   background-color: white;
 }
 
@@ -222,7 +221,7 @@ h1{
   display: flex;
   flex: 1;
   margin-bottom: 1em;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 }
 
 .inner-title-split-container > .sub1 > .list > .list-item > .list-item-number {
@@ -267,7 +266,7 @@ h1{
 
 .page > p {
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .link-buttons {
@@ -289,7 +288,7 @@ h1{
   font-weight: 800;
   background-color: #e9e9e9;
   border-radius: 2rem;
-  padding:0.5rem 1rem;
+  padding:0.25rem .75rem;
 }
 
 .link-buttons.left {
@@ -305,7 +304,6 @@ h1{
 
 .get-started{
   margin-top: 2rem;
-  font-size: 1.2rem;
   border-radius: .25rem;
 }
 
@@ -357,7 +355,7 @@ h1{
 
 .docs p {
   text-align: left;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 .docs a{
@@ -385,6 +383,7 @@ h1{
   word-wrap: break-word;
   background-color: #ececec;
   border-radius: .2rem;
+  font-size: 1rem;
   padding:1rem;
 }
 
@@ -421,19 +420,28 @@ h1{
   padding:.5em;
 }
 
-.parameter .type{
+.type{
   font-style: italic;
-  color: #777;
+  color: #379;
 }
 
 .parameter .name{
   padding:.1em 0em .1em .5em;
   border-radius: .1em;
+  font-size: 1rem;
 }
 
 .docs a.code_link{
   font-family: monospace;
   text-decoration: none;
+  font-size: 1.0rem;
+}
+
+.docs a.code_link .description{
+  display: block;
+  font-weight: 400;
+  font-family: "Open Sans";
+  font-size: .9rem;
 }
 
 .docs .code_li{
