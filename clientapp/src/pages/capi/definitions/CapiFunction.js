@@ -34,7 +34,7 @@ export default function CapiFunction({ fn }) {
         </div>
         <div className="attribute-group">
           <h3>returns</h3>
-          <p>{capiLinkReplace(fn.returns)}</p>
+          <p className="type">{capiLinkReplace(fn.returns)}</p>
         </div>
         <div className="attribute-group">
           <h3>parameters</h3>

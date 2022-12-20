@@ -23,7 +23,7 @@ export default function CapiSearch({
   const renderedFunctions = [];
 
   data.functions.forEach((fn) => {
-    const parameters = fn.parameters.map((p) => {
+    const parameters = fn.parameters.map((p, i) => {
       return (
         <>
           <span className="parameter">
@@ -31,6 +31,7 @@ export default function CapiSearch({
               {p.type.replace(/\[\`(.+)\/(.+)\`\]/gm, "$2")}
             </span>
             <span className="name">{p.name}</span>
+            {i!=fn.parameters.length-1 ? "," : ""}
           </span>
         </>
       );
@@ -48,7 +49,7 @@ export default function CapiSearch({
           className="code_link"
           to={"/capi/" + fn.header.ref + "/" + fn.name}
         >
-          {fn.name}({parameters}) -{" "}
+          {fn.name}({parameters}):
           <span className="description">
             {fn.summary.replace(/\[\`(.+)\/(.+)\`\]/gm, "`$2`")}
           </span>
