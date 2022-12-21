@@ -39,6 +39,8 @@ jobs:
       - name: Build server
         run: |
           cd capibara-website
+          export SOURCE_DATE_EPOCH=`date +%s`
+          echo "Building for $SOURCE_DATE_EPOCH"
           sbt dist
           
       - if: ${{ github.event_name == 'push' }}
