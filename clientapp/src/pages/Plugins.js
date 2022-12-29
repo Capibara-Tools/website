@@ -8,7 +8,7 @@ export default function Plugins() {
       <h3>Available Now</h3>
       <ul>
         <li>
-          <a href="https://github.com/orgs/Capibara-Tools/capibara-vs-code">
+          <a href="https://github.com/Capibara-Tools/capibara-vs-code">
             Capibara Visual Studio Code Extension
           </a>
         </li>

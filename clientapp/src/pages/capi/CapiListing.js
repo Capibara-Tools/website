@@ -2,26 +2,29 @@ import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { SupportedOs } from "./Utility";
 
 export default function CapiListing() {
   const [fetching, setFetching] = useState(false);
   const [headers, setHeaders] = useState([]);
 
-  useEffect(
-    () => {
-      setFetching(true);
-      axios.get("/api/v1/headers").then((headers) => {
-        setHeaders(headers.data);
-        setFetching(false);
-      });
-    },
-    setHeaders,
-    setFetching
-  );
+  useEffect(() => {
+    setFetching(true);
+    axios.get("/api/v1/headers").then((headers) => {
+      setHeaders(headers.data);
+      setFetching(false);
+    });
+  }, [setHeaders, setFetching]);
 
   const renderedHeaders = headers.map((header) => (
-    <li>
-      <Link to={"/capi/" + header.ref}>&lt;{header.name}&gt;</Link>
+    <li className="code_li">
+      <Link className="code_link" to={"/capi/" + header.ref}>
+        &lt;{header.name}&gt;
+        <SupportedOs affinity={header.os_affinity} />
+        <span className="description">
+          {header.summary.replace(/\[\`(.+)\/(.+)\`\]/gm, "`$2`")}
+        </span>
+      </Link>
     </li>
   ));
 

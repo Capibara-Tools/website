@@ -65,52 +65,211 @@ export default function BuildingAPlugin() {
         developer's development experience, then this would be bad
         documentation.
       </p>
-      <h3>File Specification</h3>
+      <h3>File Overview</h3>
       <pre className="code overflow">
         <b>
           <code>capibara.json</code>
         </b>
         <hr />
-        {`{  
-  "build_date": "2022-12-06T04:03:57.535553262+00:00", // This is a UTC timestamped date of processing.
-  "reference_url": "https://capibara.tools",           // This is the url that you can use to lookup backticked reference links.
-  "headers": [                                         // Contains a list of all the documented headers
-    { "ref": "winsock2", "name": "winsock2.h", "os_affinity": ["windows"] },
-    { "ref": "arpa/inet", "name": "arpa/inet.h", "os_affinity": ["unix"] }
+        {`{
+  "build_date":	"2022-12-29T16:48:36.988626935+00:00" - The UTC timestamped processing date.
+  //This is the URL that can be combined with reference links to provide actual links to hosted documentation.
+  "reference_url":	"https://capibara.tools" 
+  "headers":    […] - Contains a list of the all the documented headers.
+  "macros":     […] - Contains a list of the all the documented macros.
+  "enums":      […] - Contains a list of the all the documented enums.
+  "structs":    […] - Contains a list of the all the documented structs.
+  "typedefs":   […] - Contains a list of the all the documented typedefs.
+  "functions":  […] - Contains a list of the all the documented functions.
+}`}
+      </pre>
 
-    // ref is the definition lookup link
-    // name is the actual header file name
-    // os_affinity is an array that contains the list of systems
-    // - you will find the header file on. Can contain "unix", "windows", or "std"
-  ],
-  "functions": [                   // Contains a list of all the documented functions
-    {
-      "name": "ntohl",             // The function name
-      "header": {                  // A header summary same info as headers above.
-        "ref": "arpa/inet",
-        "name": "arpa/inet.h",
-        "os_affinity": ["unix"]
-      },
-      "summary": "Converts an [\`inttypes/uint32_t\`] from network byte order to host byte order.",
-                                           // ^----- A summary of the function
-      "returns": "[\`inttypes/uint32_t\`]",  // The return type of the function
-      "parameters": [                      // An array of function parameters
-        {
-          "name": "netlong",               // Name of the parameter
-          "type": "[\`inttypes/uint32_t\`]", // The reference linked type of the parameter
-          "description": "A short in network byte order." // A brief description of the parameter
-        }
-      ],
-      "description": "Socket function calls are always made with ports and addresses in a Big-endian\\nformat also known as network byte order. Because the endianess of host bytes may\\nvary depending on the host software and hardware, the ntohs function is used to ensure\\nthat shorts in network byte order can have their value represented natively irrespective \\nof the native endianess of the host.\\n",      
-      "associated": ["arpa/inet/htons", "arpa/inet/htonl", "arpa/inet/ntohs"]
-
-      // description is a long description of the entire function and its behavior,
-      // - contains \\n characters, and possible reference links.
-      // associated contains an array of references to other definitions
-    }
+      <h3>Headers</h3>
+      <pre className="code overflow">
+        {`{
+  "ref": "arpa/inet", - This is the reference path of the header
+  "name": "arpa/inet.h", - This is actual name of the header
+  "summary": "A collection of internet related utilities.", - A brief summary of the header.
+  "os_affinity": [ - An array containing the collective affinities of all definitions belonging to this header.
+    "unix" - May contain "unix", "std", or "windows" or any combination.
   ]
 }`}
       </pre>
+      <h3>Macros</h3>
+      <pre className="code overflow">
+        <b>
+          <code>object-like</code>
+        </b>
+        <hr />
+        {`{
+  "name": "NULL", - Name of the defintion.
+  "header": { - Contains a tiny bit of info about header file.
+    "ref": "string", - This is the header ref path
+    "name": "string.h" - This is the header's actual name.
+  },
+  "summary": "The value of a null pointer constant.", - Just a summary of the macro in question.
+  "kind": { - Technically an enum-like field, can contain either function or object.
+    "object": {} - An object-like macro has has no nested fields.
+  },
+  "description": "It may be defined as ((void*)0), 0 or 0L depending on the compiler vendor. Frequently\nused as a possible return value for functions that may or may not return a defined result\nbased on arguments.\n",
+  "os_affinity": ["std"] - May contain "unix", "std", or "windows" or any combination.
+}`}
+      </pre>
+      <pre className="code overflow">
+        <b>
+          <code>function-like</code>
+        </b>
+        <hr />
+        {`{
+  "name": "assert",
+  "header": {
+    "ref": "assert",
+    "name": "assert.h"
+  },
+  "summary": "The value of a null pointer constant.",
+  "kind": {
+    "function": { - A function-like macro contains nested fields.
+      "returns": {
+        "type": "void", - The macro's return type. 
+        "description": "Macro does not return." - A brief description of what it returns.
+      },
+      "parameters": [ - A list of macro function arguments. Same as function parameters but without types.
+        {
+          "name": "expression", - Name of macro function argument
+          //A description of the macro function argument.
+          "description": "Any expression that reduces to an integer sentinel value of TRUE, not 0, or FALSE, 0."
+        }
+      ]
+    }
+  },
+  // A description of the macro as a whole.
+  "description": "If the expression evaluates to TRUE, the macro does nothing. If it evaluates to false, it writes an error\nstderr and the program dies. Typically used to diagnose or test various pieces of code.\n",
+  "os_affinity": [
+    "std"
+  ]
+}`}
+      </pre>
+      <h3>Enums</h3>
+      <pre className="code overflow">
+        {`{
+  "name": "_WSAEcomparator",
+  "header": {"ref": "winsock2","name": "winsock2.h"},
+  "summary": "An enumeration type used for defining the semantics of version comparison.",
+  "variants": [ // Similar to function parameters except there's no type specified.
+    {
+      "name": "COMP_EQUAL = 0",
+      "description": "Used for determining if a version is equal to a given value."
+    },
+    {
+      "name": "COMP_NOTLESS",
+      "description": "Used to determine if a version is not less than a given value."
+    }
+  ],
+  "description": "Used for version comparison semantics. This enum type is rarely referenced directly and\nactually has 3 type definitions: [\`winsock2/WSAECOMPARATOR\`], *[\`winsock2/PWSAECOMPARATOR\`],\n*[\`winsock2/LPWSAECOMPARATOR\`]. It's also indirectly a member of the struct, [\`winsock2/_WSAVersion\`]\nby means of type definition.\n",
+  "os_affinity": ["windows"]
+}`}
+      </pre>
+      <h3>Structs</h3>
+      <pre className="code overflow">
+        {`{
+  "name": "in_addr",
+  "header": {
+    "ref": "netinet/in",
+    "name": "netinet/in.h"
+  },
+  "summary": "An internet address struct capable of representing an ip address.",
+  "fields": [ //Same exact sub fields as function parameters but the intended meaning and use is obviously different.
+    {
+      "name": "server_address",
+      "type": "[\`netinet/in/in_addr_t\`]",
+      "description": "The ip address of the server."
+    }
+  ],
+  "description": "The in_addr struct is a component of the [\`netinet/in/sock_addr_in\`] structure. This struct is commonly\nused with internet addressing. And it's used frequently in socket networking.\n",
+  "os_affinity": [
+    "unix"
+  ]
+}`}
+      </pre>
+      <h3>Typedefs</h3>
+      <pre className="code overflow">
+        {`{
+  "name": "PWSAECOMPARATOR",
+  "header": {
+    "ref": "winsock2",
+    "name": "winsock2.h"
+  },
+  "summary": "A pointer type for the enum, [\`winsock2/_WSAEcomparator\`], concerned with Winsock2 versioning semantics.",
+  "type": "*[\`winsock2/_WSAEcomparator\`]",
+  "associated_ref": {
+    "enum": {
+      "name": "_WSAEcomparator",
+      "header": {
+        "ref": "winsock2",
+        "name": "winsock2.h"
+      },
+      "summary": "An enumeration type used for defining the semantics of version comparison.",
+      "variants": [
+        {
+          "name": "COMP_EQUAL = 0",
+          "description": "Used for determining if a version is equal to a given value."
+        },
+        {
+          "name": "COMP_NOTLESS",
+          "description": "Used to determine if a version is not less than a given value."
+        }
+      ],
+      "description": "Used for version comparison semantics. This enum type is rarely referenced directly and\nactually has 3 type definitions: [\`winsock2/WSAECOMPARATOR\`], *[\`winsock2/PWSAECOMPARATOR\`],\n*[\`winsock2/LPWSAECOMPARATOR\`]. It's also indirectly a member of the struct, [\`winsock2/_WSAVersion\`]\nby means of type definition.\n",
+      "os_affinity": [
+        "windows"
+      ]
+    }
+  },
+  "description": "One of several type definitions over the [\`winsock2/_WSAEcomparator\`] enum.\n",
+  "os_affinity": [
+    "windows"
+  ]
+}`}
+      </pre>
+      <p>
+        Typedefs are very straightforward excepting the{" "}
+        <code>associated_ref</code> field. This field like the kind field on the
+        macro represents an enum-like object. It may contain an enum, a struct,
+        or none. In the above example we see it contains an enum. The none
+        object is simply <code>"none": {`{}`}</code>. And the <code>"enum":</code> and <code>"struct":</code> objects
+        mirror their respective formats shown earlier.
+      </p>
+      <h3>Functions</h3>
+      <pre className="code overflow">
+        {` "name": "strcat",
+  "header": {
+    "ref": "string",
+    "name": "string.h"
+  },
+  "summary": "Concatenates a source string onto the end of a destination string.",
+  "returns": {
+    "type": "char *", //The return type of the function.
+    "description": "A pointer to the destination string."
+  },
+  "parameters": [
+    {
+      "name": "dest",
+      "type": "char *",
+      "description": "A pointer to the destination string. Must be large enough to contain the resulting string."
+    },
+    {
+      "name": "source",
+      "type": "const char *",
+      "description": "A pointer to the source string. The source must not overlap the destination."
+    }
+  ],
+  "description": "Note: [\`string/strncat\`] is a similar function that should generally be preferred\nbecause it has a character limit while strcat does not. This means strcat will more\nlikely be vulnerable to overflow attacks if used without care. The strcat function is\ndesigned to operate exclusively on strings and as such it will terminate on the null\ncharacter. This function concatenates a non-overlapping source string onto the end\nof the destination string. It also returns a pointer to the destination string.\n",
+  "associated": [ //This contains a list of associated functions think of like a see also.
+    "string/strncat"
+  ],
+  "os_affinity": ["std"]
+}`}</pre>
+<p>Backtick reference links can be expected to appear in summaries, types, and descriptions.</p>
       <h2>Finalizing Your Extension</h2>
       <h3>Licensing</h3>
       <p>
@@ -123,8 +282,9 @@ export default function BuildingAPlugin() {
       </p>
       <h3>Sponsors & Donations</h3>
       <p>
-        Requests for sponsors and donation as a means of support for your hard labor, is permitted and encouraged
-        as long as it isn't annoying and gratuitous.
+        Requests for sponsors and donation as a means of support for your hard
+        labor, is permitted and encouraged as long as it isn't annoying and
+        gratuitous.
       </p>
       <h3>Publishing</h3>
       <p>

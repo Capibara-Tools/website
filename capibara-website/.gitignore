@@ -6,6 +6,10 @@ target
 /.classpath
 /.project
 /.settings
+/.bloop
+/project/.bloop
+/project/project/
+metals.sbt
 public/clientapp
 .metals
 .vscode

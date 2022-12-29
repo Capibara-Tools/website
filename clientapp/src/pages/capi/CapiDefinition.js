@@ -5,6 +5,10 @@ import { useEffect } from "react";
 import CapiHeader from "./definitions/CapiHeader";
 import CapiFunction from "./definitions/CapiFunction";
 import { Link } from "react-router-dom";
+import CapiEnum from "./definitions/CapiEnum";
+import CapiStruct from "./definitions/CapiStruct";
+import CapiTypedef from "./definitions/CapiTypedef";
+import CapiMacro from "./definitions/CapiMacro";
 
 export default function CapiDefinition() {
   const [fetching, setFetching] = useState(true);
@@ -29,13 +33,22 @@ export default function CapiDefinition() {
 
   console.log(data);
 
-  switch (data?.result_type) {
-    case "header":
+  if(!!data?.header){
       return <CapiHeader header={data.header} />;
-      break;
-    case "function":
-      return <CapiFunction fn={data.function} />;
-      break;
+  } else if (!!data?.macro) {
+    return <CapiMacro mo={data.macro} />;
+
+  } else if (!!data?.enum) {
+    return <CapiEnum em={data.enum} />;
+    
+  } else if (!!data?.struct) {
+    return <CapiStruct st={data.struct} />;
+    
+  } else if (!!data?.typedef) {
+    return <CapiTypedef tf={data.typedef} />;
+    
+  } else if (!!data?.function) {
+    return <CapiFunction fn={data.function} />;
   }
 
   if (fetching) {

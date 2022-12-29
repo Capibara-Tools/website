@@ -1,4 +1,4 @@
-import { capiLinkReplace } from "../Utility.js";
+import { capiLinkReplace, SupportedOs } from "../Utility.js";
 import { Link } from "react-router-dom";
 
 export default function CapiFunction({ fn }) {
@@ -10,8 +10,7 @@ export default function CapiFunction({ fn }) {
             {capiLinkReplace(p.type)}
           </span>
           <span className="name">{p.name}</span>
-          &ensp;-&ensp;
-          <span>{capiLinkReplace(p.description)}</span>
+          <span className="description">{capiLinkReplace(p.description)}</span>
         </li>
       </>
     );
@@ -26,6 +25,7 @@ export default function CapiFunction({ fn }) {
       </h4>
       <h2>
         function <code>{fn.name}</code>
+        <SupportedOs affinity={fn.os_affinity}/>
       </h2>
       <div className="attributes">
         <div className="attribute-group">
@@ -34,7 +34,8 @@ export default function CapiFunction({ fn }) {
         </div>
         <div className="attribute-group">
           <h3>returns</h3>
-          <p className="type">{capiLinkReplace(fn.returns)}</p>
+          <span className="type rtype">{capiLinkReplace(fn.returns.type)}</span>
+          <p className="description">{capiLinkReplace(fn.returns.description)}</p>
         </div>
         <div className="attribute-group">
           <h3>parameters</h3>

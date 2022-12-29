@@ -688,3 +688,51 @@ h1{
     width: 95%;
   }
 }
+
+.supported-oses{
+  width:4em;
+  float: right;
+}
+
+.supported-oses ul, .supported-oses li{
+  list-style-type: none;
+  color:#777;
+  display: flex;
+  justify-content: right;
+}
+
+.supported-oses li{
+  margin: auto 0;
+  font-size: 1.2rem;
+}
+
+.attribute-group .description {
+  display: block;
+  font-weight: 400;
+  font-family: "Open Sans";
+  font-size: .9rem;
+}
+
+.attribute-group li > .description {
+margin-left: 1.5rem;
+}
+
+.attribute-group > ul > .code_li:last-child{
+  border-bottom: 0px solid transparent;
+}
+
+.code_link .parameter {
+  display: inline-block;
+  padding: 0 .5em;
+}
+
+.quotebox{
+  font-size: .8rem;
+  background-color: #ececec;
+  border-radius: .25em;
+  padding:1em;
+}
+
+.rtype {
+  color:#bd4c56;
+}
