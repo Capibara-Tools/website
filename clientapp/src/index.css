@@ -737,6 +737,6 @@ margin-left: 1.5rem;
   color:#bd4c56;
 }
 
-attribute-group > p.description {
+.attribute-group > p.description {
   white-space: pre-line;
 }
