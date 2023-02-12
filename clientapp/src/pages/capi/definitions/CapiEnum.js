@@ -35,7 +35,7 @@ export default function CapiEnum({ em }) {
         </div>
         <div className="attribute-group">
           <h3>description</h3>
-          <p>{capiLinkReplace(em.description)}</p>
+          <p className="description">{capiLinkReplace(em.description)}</p>
         </div>
       </div>
     </>

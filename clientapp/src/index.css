@@ -736,3 +736,7 @@ margin-left: 1.5rem;
 .rtype {
   color:#bd4c56;
 }
+
+attribute-group > p.description {
+  white-space: pre-line;
+}

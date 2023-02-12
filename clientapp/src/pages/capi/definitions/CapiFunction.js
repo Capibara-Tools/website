@@ -43,7 +43,7 @@ export default function CapiFunction({ fn }) {
         </div>
         <div className="attribute-group">
           <h3>description</h3>
-          <p>{capiLinkReplace(fn.description)}</p>
+          <p className="description">{capiLinkReplace(fn.description)}</p>
         </div>
       </div>
     </>

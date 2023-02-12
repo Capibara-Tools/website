@@ -65,7 +65,7 @@ export default function CapiMacro({ mo }) {
         )}
         <div className="attribute-group">
           <h3>description</h3>
-          <p>{capiLinkReplace(mo.description)}</p>
+          <p className="description">{capiLinkReplace(mo.description)}</p>
         </div>
       </div>
     </>

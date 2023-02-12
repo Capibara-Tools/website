@@ -36,7 +36,7 @@ export default function CapiStruct({ st }) {
         </div>
         <div className="attribute-group">
           <h3>description</h3>
-          <p>{capiLinkReplace(st.description)}</p>
+          <p className="description">{capiLinkReplace(st.description)}</p>
         </div>
       </div>
     </>

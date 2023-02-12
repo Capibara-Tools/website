@@ -54,7 +54,7 @@ export default function CapiTypedef({ tf }) {
         </div>
         <div className="attribute-group">
           <h3>description</h3>
-          <p>{capiLinkReplace(tf.description)}</p>
+          <p className="description">{capiLinkReplace(tf.description)}</p>
         </div>
       </div>
     </>
