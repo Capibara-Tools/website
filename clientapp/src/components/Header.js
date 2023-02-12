@@ -17,6 +17,7 @@ export default function Header() {
             <NavLink to="/docs">Docs</NavLink>
             <NavLink to="/capi">CAPI</NavLink>
             <NavLink to="/about">About</NavLink>
+            <a href="https://shop.capibara.tools/">Store</a>
           </div>
         </div>
         <div className="right-side">
