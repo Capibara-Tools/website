@@ -17,13 +17,31 @@ export default function Header() {
             <NavLink to="/docs">Docs</NavLink>
             <NavLink to="/capi">CAPI</NavLink>
             <NavLink to="/about">About</NavLink>
-            <a href="https://shop.capibara.tools/">Store</a>
+            <a
+              href="https://shop.capibara.tools/"
+              rel="noreferrer noopener"
+              target="_blank"
+            >
+              Store
+            </a>
           </div>
         </div>
         <div className="right-side">
           <div className="links">
-            <a href="https://github.com/Capibara-Tools"><SiGithub/></a>
-            <a href="https://discord.gg/XwNUMMY4b2"><SiDiscord/></a>
+            <a
+              href="https://github.com/Capibara-Tools"
+              rel="noreferrer noopener"
+              target="_blank"
+            >
+              <SiGithub />
+            </a>
+            <a
+              href="https://discord.gg/XwNUMMY4b2"
+              rel="noreferrer noopener"
+              target="_blank"
+            >
+              <SiDiscord />
+            </a>
           </div>
         </div>
       </nav>
