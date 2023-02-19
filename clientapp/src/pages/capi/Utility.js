@@ -7,8 +7,6 @@ export const capiLinkReplace = (string) => {
 
   return reactStringReplace(string, /(\[\`(?:.+?)\/(?:.+?)\`\])/gm, (match) => {
     const capture = link_match.exec(match);
-    console.log(match);
-    console.log(capture);
     return (
       <Link to={"/capi/" + capture[1] + "/" + capture[2]}>{capture[2]}</Link>
     );
