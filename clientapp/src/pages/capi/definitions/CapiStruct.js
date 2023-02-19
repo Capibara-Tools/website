@@ -1,5 +1,6 @@
-import { capiLinkReplace, SupportedOs } from "../Utility.js";
+import { capiLinkReplace, capiMdLinkReplace, SupportedOs } from "../Utility.js";
 import { Link } from "react-router-dom";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown.js";
 
 export default function CapiStruct({ st }) {
   const fields = st.fields.map((p) => {
@@ -36,7 +37,9 @@ export default function CapiStruct({ st }) {
         </div>
         <div className="attribute-group">
           <h3>description</h3>
-          <p className="description">{capiLinkReplace(st.description)}</p>
+          <div className="description">
+            <ReactMarkdown children={capiMdLinkReplace(st.description)} />
+          </div>
         </div>
       </div>
     </>

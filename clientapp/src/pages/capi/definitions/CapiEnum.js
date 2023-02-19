@@ -1,5 +1,6 @@
-import { capiLinkReplace, SupportedOs } from "../Utility.js";
+import { capiLinkReplace, capiMdLinkReplace, SupportedOs } from "../Utility.js";
 import { Link } from "react-router-dom";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown.js";
 
 export default function CapiEnum({ em }) {
   const variants = em.variants.map((p) => {
@@ -22,7 +23,7 @@ export default function CapiEnum({ em }) {
       </h4>
       <h2>
         enum <code>{em.name}</code>
-        <SupportedOs affinity={em.os_affinity}/>
+        <SupportedOs affinity={em.os_affinity} />
       </h2>
       <div className="attributes">
         <div className="attribute-group">
@@ -35,7 +36,9 @@ export default function CapiEnum({ em }) {
         </div>
         <div className="attribute-group">
           <h3>description</h3>
-          <p className="description">{capiLinkReplace(em.description)}</p>
+          <div className="description">
+            <ReactMarkdown children={capiMdLinkReplace(em.description)} />
+          </div>
         </div>
       </div>
     </>

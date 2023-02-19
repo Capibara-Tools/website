@@ -718,10 +718,6 @@ h1 {
   color: #bd4c56;
 }
 
-.attribute-group > p.description {
-  white-space: pre-line;
-}
-
 @media screen and (max-width: 1200px) {
   .inner-nav .left-side .links {
     text-decoration: none;
@@ -735,4 +731,16 @@ h1 {
     color: #333;
     text-align: center;
   }
+}
+
+.attribute-group > div.description p {
+  font-size: 1rem;
+  line-height: 2rem;
+}
+
+.attribute-group > div.description ul {
+  line-height: 2rem;
+  margin-left: 1em;
+  list-style-position: inside;
+  padding-bottom: 1rem;
 }

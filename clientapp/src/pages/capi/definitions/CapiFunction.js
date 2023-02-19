@@ -1,14 +1,13 @@
-import { capiLinkReplace, SupportedOs } from "../Utility.js";
+import { capiLinkReplace, capiMdLinkReplace, SupportedOs } from "../Utility.js";
 import { Link } from "react-router-dom";
+import ReactMarkdown from "react-markdown";
 
 export default function CapiFunction({ fn }) {
   const parameters = fn.parameters.map((p) => {
     return (
       <>
         <li className="parameter">
-          <span className="type">
-            {capiLinkReplace(p.type)}
-          </span>
+          <span className="type">{capiLinkReplace(p.type)}</span>
           <span className="name">{p.name}</span>
           <span className="description">{capiLinkReplace(p.description)}</span>
         </li>
@@ -25,7 +24,7 @@ export default function CapiFunction({ fn }) {
       </h4>
       <h2>
         function <code>{fn.name}</code>
-        <SupportedOs affinity={fn.os_affinity}/>
+        <SupportedOs affinity={fn.os_affinity} />
       </h2>
       <div className="attributes">
         <div className="attribute-group">
@@ -35,7 +34,9 @@ export default function CapiFunction({ fn }) {
         <div className="attribute-group">
           <h3>returns</h3>
           <span className="type rtype">{capiLinkReplace(fn.returns.type)}</span>
-          <p className="description">{capiLinkReplace(fn.returns.description)}</p>
+          <p className="description">
+            {capiLinkReplace(fn.returns.description)}
+          </p>
         </div>
         <div className="attribute-group">
           <h3>parameters</h3>
@@ -43,7 +44,9 @@ export default function CapiFunction({ fn }) {
         </div>
         <div className="attribute-group">
           <h3>description</h3>
-          <p className="description">{capiLinkReplace(fn.description)}</p>
+          <div className="description">
+            <ReactMarkdown children={capiMdLinkReplace(fn.description)} />
+          </div>
         </div>
       </div>
     </>

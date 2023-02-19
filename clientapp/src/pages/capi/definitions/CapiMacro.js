@@ -1,5 +1,6 @@
-import { capiLinkReplace, SupportedOs } from "../Utility.js";
+import { capiLinkReplace, capiMdLinkReplace, SupportedOs } from "../Utility.js";
 import { Link } from "react-router-dom";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown.js";
 
 export default function CapiMacro({ mo }) {
   var parameters = [];
@@ -54,7 +55,9 @@ export default function CapiMacro({ mo }) {
                 {capiLinkReplace(mo.kind.function.returns.type)}
               </span>
               <p className="description">
-                {capiLinkReplace(mo.kind.function.description)}
+                <ReactMarkdown
+                  children={capiMdLinkReplace(mo.kind.function.description)}
+                />
               </p>
             </div>
             <div className="attribute-group">
@@ -65,7 +68,9 @@ export default function CapiMacro({ mo }) {
         )}
         <div className="attribute-group">
           <h3>description</h3>
-          <p className="description">{capiLinkReplace(mo.description)}</p>
+          <div className="description">
+            <ReactMarkdown children={capiMdLinkReplace(mo.description)} />
+          </div>
         </div>
       </div>
     </>

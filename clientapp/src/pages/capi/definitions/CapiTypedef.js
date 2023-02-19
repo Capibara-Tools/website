@@ -1,7 +1,8 @@
-import { capiLinkReplace, SupportedOs } from "../Utility.js";
+import { capiLinkReplace, capiMdLinkReplace, SupportedOs } from "../Utility.js";
 import { Link } from "react-router-dom";
 import CapiEnum from "./CapiEnum.js";
 import CapiStruct from "./CapiStruct.js";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown.js";
 
 export default function CapiTypedef({ tf }) {
   /*const fields = st.fields.map((p) => {
@@ -54,7 +55,9 @@ export default function CapiTypedef({ tf }) {
         </div>
         <div className="attribute-group">
           <h3>description</h3>
-          <p className="description">{capiLinkReplace(tf.description)}</p>
+          <div className="description">
+            <ReactMarkdown children={capiMdLinkReplace(tf.description)} />
+          </div>
         </div>
       </div>
     </>
