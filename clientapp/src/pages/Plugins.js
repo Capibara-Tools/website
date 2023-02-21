@@ -12,10 +12,15 @@ export default function Plugins() {
             Capibara Visual Studio Code Extension
           </a>
         </li>
+        <li>
+          <a href="https://github.com/Capibara-Tools/capibara-vim">
+            Capibara Vim Extension
+          </a>
+        </li>
       </ul>
       <h3>Coming Soon</h3>
       <ul>
-        <li>Capibara Vim Extension</li>
+        <li>TBA</li>
       </ul>
       <h2>About</h2>
       <p>
