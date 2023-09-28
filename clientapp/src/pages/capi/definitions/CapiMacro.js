@@ -4,6 +4,7 @@ import { ReactMarkdown } from "react-markdown/lib/react-markdown.js";
 
 export default function CapiMacro({ mo }) {
   var parameters = [];
+  var examples = [];
 
   if (!!mo.kind?.function) {
     parameters = mo.kind.function.parameters.map((p) => {
@@ -15,6 +16,17 @@ export default function CapiMacro({ mo }) {
               {capiLinkReplace(p.description)}
             </span>
           </li>
+        </>
+      );
+    });
+
+    examples = mo.kind.function.examples.map((e) => {
+      return (
+        <>
+          <h4>{e.title}</h4>
+          <div className="example">
+            <ReactMarkdown children={capiMdLinkReplace("```"+e.code+"```")} />
+          </div>
         </>
       );
     });
@@ -72,6 +84,13 @@ export default function CapiMacro({ mo }) {
             <ReactMarkdown children={capiMdLinkReplace(mo.description)} />
           </div>
         </div>
+        {!!mo.kind?.function && (
+          <>
+          <div className="attribute-group">
+            <h3>examples</h3>
+            <ul>{examples}</ul>
+          </div>
+          </>)}
       </div>
     </>
   );
