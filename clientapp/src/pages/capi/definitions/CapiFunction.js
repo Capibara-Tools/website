@@ -15,6 +15,17 @@ export default function CapiFunction({ fn }) {
     );
   });
 
+  const examples = fn.examples.map((e) => {
+    return (
+      <>
+        <h4>{e.title}</h4>
+        <div className="example">
+          <ReactMarkdown children={capiMdLinkReplace("```"+e.code+"```")} />
+        </div>
+      </>
+    );
+  });
+
   return (
     <>
       <h4 className="breadcrumbs">
@@ -48,6 +59,10 @@ export default function CapiFunction({ fn }) {
             <ReactMarkdown children={capiMdLinkReplace(fn.description)} />
           </div>
         </div>
+        <div className="attribute-group">
+          <h3>examples</h3>
+          {examples}
+        </div>  
       </div>
     </>
   );
