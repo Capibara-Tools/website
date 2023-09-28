@@ -10,6 +10,10 @@ object MacroParameter {
   implicit val parameterFormatter = Json.format[MacroParameter];
 }
 
+object MacroExample {
+  implicit val parameterFormatter = Json.format[MacroExample];
+}
+
 object MacroFunction {
   implicit val functionFormatter = Json.format[MacroFunction];
 }
@@ -43,7 +47,8 @@ case class MacroKind(
 
 case class MacroFunction(
     returns: MacroReturn,
-    parameters: Seq[MacroParameter]
+    parameters: Seq[MacroParameter],
+    examples: Seq[MacroExample]
 )
 
 case class MacroReturn(
@@ -54,4 +59,9 @@ case class MacroReturn(
 case class MacroParameter(
     name: String,
     description: String
+)
+
+case class MacroExample(
+    title: String,
+    code: String,
 )
