@@ -373,6 +373,21 @@ h1 {
   padding: 1rem;
 }
 
+.example pre {
+  overflow-x: scroll;
+  white-space: pre;
+  word-wrap: normal;
+}
+
+.example pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  background-color: #ececec;
+  border-radius: 0.2rem;
+  font-size: 1rem;
+  padding: 1rem;
+}
+
 .page .search {
   display: flex;
   margin: auto;
