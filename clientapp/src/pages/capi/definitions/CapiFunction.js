@@ -1,4 +1,6 @@
 import { capiLinkReplace, capiMdLinkReplace, SupportedOs } from "../Utility.js";
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 
@@ -20,7 +22,7 @@ export default function CapiFunction({ fn }) {
       <>
         <h4>{e.title}</h4>
         <div className="example">
-          <ReactMarkdown children={capiMdLinkReplace("```"+e.code+"```")} />
+          <SyntaxHighlighter language="c" style={oneLight} code={e.code} />
         </div>
       </>
     );
