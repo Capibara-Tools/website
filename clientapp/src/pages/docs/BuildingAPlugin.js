@@ -140,6 +140,12 @@ export default function BuildingAPlugin() {
           "description": "Any expression that reduces to an integer sentinel value of TRUE, not 0, or FALSE, 0."
         }
       ]
+      "examples": [
+        {
+          "title": "Using assert to verify expected behavior",
+          "code": "#include <stdio.html>\n\nint main(int argc, char ** argv){\nassert(1==1)\n}\n"
+        }
+      ]
     }
   },
   // A description of the macro as a whole.
@@ -264,6 +270,12 @@ export default function BuildingAPlugin() {
     }
   ],
   "description": "Note: [\`string/strncat\`] is a similar function that should generally be preferred\nbecause it has a character limit while strcat does not. This means strcat will more\nlikely be vulnerable to overflow attacks if used without care. The strcat function is\ndesigned to operate exclusively on strings and as such it will terminate on the null\ncharacter. This function concatenates a non-overlapping source string onto the end\nof the destination string. It also returns a pointer to the destination string.\n",
+  "examples": [
+    {
+      "title": "Using strcat to concatenate two strings.",
+      "code": "#include <stdio.html>\n\nint main(int argc, char ** argv){\nchar buffer[50] = "Hello";\nchar append[50] = "World";\nstrcat(buffer,append);\n}\n"
+    }
+  ]
   "associated": [ //This contains a list of associated functions think of like a see also.
     "string/strncat"
   ],

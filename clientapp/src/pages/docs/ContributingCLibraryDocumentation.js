@@ -173,6 +173,15 @@ kind: !function //Has subproperties that help to document the functional behavio
   parameters:
     - name: expression
       description: "Any expression that reduces to an integer sentinel value of TRUE, not 0, or FALSE, 0."
+  examples: [
+    - title: "Using assert to verify expected behavior"
+      code: |
+        #include <stdio.html>
+        
+        int main(int argc, char ** argv){
+          assert(1==1)
+        }
+  ]
 description: |
   If the expression evaluates to TRUE, the macro does nothing. If it evaluates to false, it writes an error
   stderr and the program dies. Typically used to diagnose or test various pieces of code.
@@ -284,8 +293,21 @@ description: |
   that a long being provided to the socket functions is Big-endian irrespective of the native
   endianess of the host.
 associated: ["arpa/inet/htons", "arpa/inet/ntohl", "arpa/inet/ntohs"]
+examples: []
 os_affinity: ["unix"]`}
       </pre>
+      <p>
+        <ul>
+          <li>
+            <code>examples</code> is a recently added array field that can be used 
+            to share example snippets of code showing how the function in question might
+            be used. It contains two fields, <code>title</code> and <code>code</code>. The code
+            field should be written using the multi-line format like description, code will
+            be rendered as in without considering markdown. So to document aspects of your code use 
+            inline comments e.g <code>//</code> as though you were actually writing C.
+          </li>
+        </ul>
+      </p>
       <h2>Testing Your Contribution</h2>
       <p>
         To test your new definitions we recommend running them through{" "}
