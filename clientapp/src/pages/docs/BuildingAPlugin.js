@@ -143,7 +143,7 @@ export default function BuildingAPlugin() {
       "examples": [
         {
           "title": "Using assert to verify expected behavior",
-          "code": "#include <stdio.html>\n\nint main(int argc, char ** argv){\nassert(1==1)\n}\n"
+          "code": "#include <stdio.html>\\n\\nint main(int argc, char ** argv){\\nassert(1==1)\\n}\\n"
         }
       ]
     }
@@ -273,7 +273,7 @@ export default function BuildingAPlugin() {
   "examples": [
     {
       "title": "Using strcat to concatenate two strings.",
-      "code": "#include <stdio.html>\n\nint main(int argc, char ** argv){\nchar buffer[50] = "Hello";\nchar append[50] = "World";\nstrcat(buffer,append);\n}\n"
+      "code": "#include <stdio.html>\\n\\nint main(int argc, char ** argv){\\nchar buffer[50] = "Hello";\\nchar append[50] = "World";\\nstrcat(buffer,append);\\n}\\n"
     }
   ]
   "associated": [ //This contains a list of associated functions think of like a see also.
