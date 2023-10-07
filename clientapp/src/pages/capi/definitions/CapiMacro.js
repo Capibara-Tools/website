@@ -68,11 +68,6 @@ export default function CapiMacro({ mo }) {
               <span className="type rtype">
                 {capiLinkReplace(mo.kind.function.returns.type)}
               </span>
-              <p className="description">
-                <ReactMarkdown
-                  children={capiMdLinkReplace(mo.kind.function.description)}
-                />
-              </p>
             </div>
             <div className="attribute-group">
               <h3>parameters</h3>
