@@ -20,7 +20,8 @@ export default function Plugins() {
       </ul>
       <h3>Coming Soon</h3>
       <ul>
-        <li>TBA</li>
+        <li>Capibara Emacs Extension</li>
+        <li>Capibara CLion Extension (Under consideration)</li>
       </ul>
       <h2>About</h2>
       <p>
