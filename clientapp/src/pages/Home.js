@@ -9,7 +9,7 @@ export default function Home() {
           <div className="main-hero">
             <div className="prompt">Capibara is open source</div>
             <div className="left">Crowd-sourced.</div>
-            <div className="middle colored">C library documentation. </div>
+            <div className="middle colored">C library documentation and tooling. </div>
             <div className="right">For today's developers.</div>
           </div>
         </div>
