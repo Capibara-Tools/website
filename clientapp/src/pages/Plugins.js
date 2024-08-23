@@ -17,10 +17,14 @@ export default function Plugins() {
             Capibara Vim Extension
           </a>
         </li>
+        <li>
+          <a href="https://github.com/Capibara-Tools/capibara-emacs">
+            Capibara Emacs Extension
+          </a>
+        </li>
       </ul>
       <h3>Coming Soon</h3>
       <ul>
-        <li>Capibara Emacs Extension</li>
         <li>Capibara CLion Extension (Under consideration)</li>
       </ul>
       <h2>About</h2>
