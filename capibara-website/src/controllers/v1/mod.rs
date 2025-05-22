@@ -1,0 +1,1 @@
+pub mod capibara_controller;
