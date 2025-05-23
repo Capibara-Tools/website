@@ -6,12 +6,12 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: [ "main" ]
+     branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
+     branches: [ "main" ]
 
   # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -24,7 +24,6 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-      - uses: japgolly/setup-everything-scala@v3.1
   
       # Runs a set of commands using the runners shell
       - name: Build clientapp
@@ -32,29 +31,18 @@ jobs:
           cd clientapp
           npm install
           CI=false npm run build
-          echo "Copy build to Play Server"
+          echo "Copy build to Shuttle Server"
           ls
-          mv ./build ../capibara-website/public/clientapp
-          
-      - name: Build server
-        run: |
-          cd capibara-website
-          export SOURCE_DATE_EPOCH=`date +%s`
-          echo "Building for $SOURCE_DATE_EPOCH"
-          sbt dist
-          
+          mv ./build ../capibara-website/assets/clientapp
+
       - if: ${{ github.event_name == 'push' }}
-        name: Publish to capibara.tools
-        env: 
-          CAPIBARA_WEBSITE_SSH_KEY: ${{ secrets.CAPIBARA_TOOLS_USER_SSH_KEY }}
-        run: |
-          mkdir ../keys
-          cd ../keys
-          echo "$CAPIBARA_WEBSITE_SSH_KEY" > capibara_website_ssh_key
-          chmod 600 capibara_website_ssh_key
-          mkdir ~/.ssh
-          ssh-keyscan -t rsa capibara.tools >> ~/.ssh/known_hosts
-          cd ../website/capibara-website/target/universal
-          scp -i ../../../../keys/capibara_website_ssh_key capibara-website-1.0-SNAPSHOT.zip capibara@capibara.tools:dist.zip
-          ssh -i ../../../../keys/capibara_website_ssh_key capibara@capibara.tools 'bash < /home/capibara/redeploy_script.sh'
-          echo "All Done"
+        name: Shuttle Deploy
+        uses: shuttle-hq/deploy-action@v2
+        with:
+          shuttle-api-key: ${{ secrets.SHUTTLE_API_KEY }}
+          project-id: proj_01JVSZDERDWQ0AQ7FKBSYEP2N2
+          working-directory: "capibara-website"
+          cargo-shuttle-version: "0.48.1"
+          extra-args: --allow-dirty --debug
+          secrets: |
+            CAPIBARA_API_KEY = '${{ secrets.CAPIBARA_API_KEY }}'
