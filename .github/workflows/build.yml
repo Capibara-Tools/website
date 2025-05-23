@@ -34,7 +34,7 @@ jobs:
           ls
           mv ./build ../capibara-website/assets/clientapp
 
-      - name: Build Server
+      - name: Test Build the Server
         run: |
           cd capibara-website
           cargo build
