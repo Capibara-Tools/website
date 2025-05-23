@@ -46,7 +46,7 @@ jobs:
           shuttle-api-key: ${{ secrets.SHUTTLE_API_KEY }}
           project-id: proj_01JVSZDERDWQ0AQ7FKBSYEP2N2
           working-directory: "capibara-website"
-          cargo-shuttle-version: "0.48.1"
+          cargo-shuttle-version: "0.55.0"
           extra-args: --allow-dirty --debug
           secrets: |
             CAPIBARA_API_KEY = '${{ secrets.CAPIBARA_API_KEY }}'
