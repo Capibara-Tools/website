@@ -1,4 +1,5 @@
 use std::default::Default;
+use std::path::PathBuf;
 use rocket::data::ToByteUnit;
 use rocket::fs::NamedFile;
 use rocket::http::Status;
@@ -12,7 +13,6 @@ use crate::infrastructure::auth_token::AuthToken;
 use crate::models::document;
 use crate::models::{document::Document, header::Header};
 use crate::CapibaraState;
-
 
 #[get("/v1/headers")]
 pub async fn headers(document: Document) -> Json<Vec<Header>>{
@@ -82,15 +82,20 @@ pub async fn update_definitions(data : Data<'_>, _token : AuthToken<'_>, state: 
 
             let upsert = sqlx::query(r#"
             INSERT INTO blob_persist (title, blob_data) VALUES ($1, convert_to($2, 'UTF8'))
-            ON CONFLICT (title)
-            DO NOTHING | DO UPDATE SET title = $1, blob_data = convert_to($2, 'UTF8');
+            ON CONFLICT (title) DO UPDATE SET title = $1, blob_data = convert_to($2, 'UTF8');
             "#);
 
-            let _ = upsert
+            //println!("{:?}", json_string);
+
+            let output = upsert
             .bind("capibara_document")
             .bind(json_string)
             .execute(&state.pool)
             .await;
+
+            _ = output.map_err(|x| {
+                eprintln!("{:?}", x)
+            });
 
             let mut lock = state.document.write().await;
             *lock = Some(document.clone());
@@ -104,10 +109,10 @@ pub async fn update_definitions(data : Data<'_>, _token : AuthToken<'_>, state: 
     }
 }
 
-//GET /api/v1/definition/*definition controllers.CapibaraController.definition(definition)
-#[get("/v1/definition/<term>")]
-pub async fn definition(document: Document, term: Option<&str>) -> Result<Json<RefResult>, Custom<String>>{
+#[get("/v1/definition/<term..>")]
+pub async fn definition(document: Document, term: Option<PathBuf>) -> Result<Json<RefResult>, Custom<String>>{
     if let Some(term) = term {
+        let term = term.to_str().unwrap().replace("\\", "/");
         let mut returnable = RefResult::default();
 
         let header = document.clone()

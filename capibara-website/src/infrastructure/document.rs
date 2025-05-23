@@ -32,7 +32,7 @@ impl<'r> FromRequest<'r> for Document {
         }
 
         if not_populated {
-            let query = sqlx::query(r#"SELECT title, convert_to(blob_data, 'UTF8') as data FROM blob_persist WHERE title = $1;"#);
+            let query = sqlx::query(r#"SELECT title, convert_from(blob_data, 'UTF8') as data FROM blob_persist WHERE title = $1;"#);
 
             let result = query
             .bind("capibara_document")
@@ -45,7 +45,11 @@ impl<'r> FromRequest<'r> for Document {
                     *lock = Some(document.clone());
 
                     return Outcome::Success(document)
+                } else {
+                    println!("data {}", data);
                 }
+            } else {
+                println!("{:?}", result)
             }
         }
 

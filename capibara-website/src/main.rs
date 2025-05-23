@@ -1,12 +1,17 @@
 use controllers::v1::capibara_controller;
 use models::document::Document;
+use rocket::fairing::AdHoc;
 use rocket::fs::relative;
 use rocket::fs::NamedFile;
+use rocket::http::ContentType;
+use rocket::http::Status;
 use shuttle_runtime::CustomError;
 use sqlx::Executor;
 use sqlx::PgPool;
+use std::io::Cursor;
 use std::path::{Path, PathBuf};
 use tokio::sync::RwLock;
+use shuttle_runtime::SecretStore;
 
 pub mod controllers;
 pub mod dtos;
@@ -26,18 +31,22 @@ pub async fn serve(path: PathBuf) -> Option<NamedFile> {
 
 struct CapibaraState {
     pool: PgPool,
-    document : RwLock<Option<Document>>
+    document : RwLock<Option<Document>>,
+    api_key: String
 }
 
 #[shuttle_runtime::main]
 async fn main(
-    #[shuttle_shared_db::Postgres] pool: PgPool
+    #[shuttle_runtime::Secrets] secrets: SecretStore,
+    #[shuttle_shared_db::Postgres(local_uri = "postgres://postgres:password@localhost:5432/postgres")] pool: PgPool
 ) -> shuttle_rocket::ShuttleRocket {
     pool.execute(include_str!("../schema.sql"))
         .await
         .map_err(CustomError::new)?;
 
-    let state = CapibaraState { pool, document : RwLock::new(None) };
+    let secret = secrets.get("CAPIBARA_API_KEY").expect("secret was not found");
+
+    let state = CapibaraState { pool, document : RwLock::new(None), api_key: secret};
 
     let rocket = rocket::build()
     .mount("/api", rocket::routes![
@@ -47,6 +56,15 @@ async fn main(
         capibara_controller::definition])
     .mount("/", rocket::routes![capibara_controller::capibara_file])
     .mount("/", rocket::routes![serve])
+    .attach(AdHoc::on_response("404 Redirector", |_req, res| Box::pin(async move {
+        if res.status() == Status::NotFound {
+            let body = std::fs::read_to_string(Path::new(relative!("assets/clientapp/index.html"))).expect("Index file can't be found.");
+
+            res.set_status(Status::Ok);
+            res.set_header(ContentType::HTML);
+            res.set_sized_body(body.len(), Cursor::new(body));
+        }
+    })))
     .manage(state);
 
     Ok(rocket.into())
