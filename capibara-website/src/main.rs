@@ -26,6 +26,8 @@ pub async fn serve(path: PathBuf) -> Option<NamedFile> {
         path.push("index.html");
     }
 
+    println!("Attempting to read: {:?}", path);
+
     NamedFile::open(path).await.ok()
 }
 
@@ -40,6 +42,25 @@ async fn main(
     #[shuttle_runtime::Secrets] secrets: SecretStore,
     #[shuttle_shared_db::Postgres(local_uri = "postgres://postgres:password@localhost:5432/postgres")] pool: PgPool
 ) -> shuttle_rocket::ShuttleRocket {
+
+    //Debug . listings
+    let paths = std::fs::read_dir("./").unwrap();
+
+    for path in paths {
+        println!("Name: {}", path.unwrap().path().display())
+    }
+
+    //Print assets path
+    println!("{:?}",Path::new(relative!("assets")));
+
+    //Print contents of assets
+    let paths = std::fs::read_dir(Path::new(relative!("assets"))).unwrap();
+
+    for path in paths {
+        println!("Name: {}", path.unwrap().path().display())
+    }
+
+
     pool.execute(include_str!("../schema.sql"))
         .await
         .map_err(CustomError::new)?;
