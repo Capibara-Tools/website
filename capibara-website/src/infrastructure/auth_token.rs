@@ -3,7 +3,7 @@ use rocket::{http::Status, request::{FromRequest, Outcome, Request}};
 pub struct AuthToken<'r>(&'r str);
 
 #[derive(Debug)]
-enum AuthTokenError {
+pub enum AuthTokenError {
     Missing,
     Invalid,
 }

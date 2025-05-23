@@ -1,4 +1,5 @@
 use rocket::serde::{Deserialize, Serialize};
+
 use super::header::Header;
 use super::_macro::Macro;
 use super::enumeration::Enumeration;

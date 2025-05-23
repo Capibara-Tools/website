@@ -212,6 +212,7 @@ dependencies = [
  "shuttle-rocket",
  "shuttle-runtime",
  "shuttle-shared-db",
+ "sqlx",
  "tokio",
 ]
 
