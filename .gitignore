@@ -3,4 +3,5 @@
 .vscode
 
 capibara.json
+capibara-website/assets/clientapp
 /RUNNING_PID
