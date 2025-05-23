@@ -36,6 +36,7 @@ jobs:
 
       - name: Build Server
         run: |
+          cd capibara-website
           cargo build
 
       - if: ${{ github.event_name == 'push' }}
