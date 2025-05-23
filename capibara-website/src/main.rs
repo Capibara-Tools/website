@@ -21,7 +21,7 @@ pub mod models;
 #[rocket::get("/<path..>")]
 pub async fn serve(path: PathBuf) -> Option<NamedFile> {
     let stripped = path.to_str().unwrap().replace("..", "");
-    let mut path = Path::new(relative!("assets/clientapp")).join(stripped);
+    let mut path = Path::new(relative!("assets")).join("clientapp").join(stripped);
     if path.is_dir() {
         path.push("index.html");
     }
@@ -58,7 +58,7 @@ async fn main(
     .mount("/", rocket::routes![serve])
     .attach(AdHoc::on_response("404 Redirector", |_req, res| Box::pin(async move {
         if res.status() == Status::NotFound {
-            let body = std::fs::read_to_string(Path::new(relative!("assets/clientapp/index.html"))).expect("Index file can't be found.");
+            let body = std::fs::read_to_string(Path::new(relative!("assets")).join("clientapp/index.html")).expect("Index file can't be found.");
 
             res.set_status(Status::Ok);
             res.set_header(ContentType::HTML);
