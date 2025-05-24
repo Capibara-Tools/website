@@ -1,5 +1,5 @@
 [deploy]
 include = [
     "assets/*",
-    "assets/clientapp/*
+    "assets/clientapp/*"
 ]
