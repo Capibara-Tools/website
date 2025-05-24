@@ -1,3 +1,9 @@
+[build]
+assets = [
+    "assets/*",
+    "assets/clientapp/*"
+]
+
 [deploy]
 include = [
     "assets/*",
